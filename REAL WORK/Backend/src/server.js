@@ -12,12 +12,12 @@ app.use(express.json());
 
 // Test route
 app.get("/", (req, res) => {
-    res.json({
-        message: "REAL WORK backend is running!"
-    });
+  res.json({
+    message: "REAL WORK backend is running!",
+  });
 });
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
