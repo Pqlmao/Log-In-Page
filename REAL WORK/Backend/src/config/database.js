@@ -1,13 +1,15 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
-const databaseUrl =
-  process.env.DATABASE_URL ||
-  "postgresql://neondb_owner:npg_59cVJbpXgKeP@ep-purple-base-b325kosb-pooler.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
+if (!process.env.DATABASE_URL) {
+  throw new Error(
+    "DATABASE_URL belum diatur. Isi variabel ini di file .env backend.",
+  );
+}
 
 const pool = new Pool({
-  connectionString: databaseUrl,
-  ssl: { rejectUnauthorized: false },
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DB_SSL === "false" ? false : { rejectUnauthorized: false },
 });
 
 module.exports = pool;
